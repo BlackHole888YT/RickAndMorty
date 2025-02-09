@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="#2B2D31"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/char_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:background="@android:color/darker_gray"
+        tools:src="@drawable/ic_launcher_background"
+        android:layout_gravity="center_vertical"
+        />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="#476582"
+        android:paddingStart="8dp"
+        android:layout_marginStart="4dp"
+        tools:ignore="RtlSymmetry">
+
+        <TextView
+            android:id="@+id/char_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Person name"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="2dp">
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="#00C853"
+                android:layout_marginEnd="6dp"/>
+
+            <TextView
+                android:id="@+id/char_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Dead/Alive"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/char_dash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/minus"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/char_species"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Human/Alient/etc"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/last_known_location"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12sp"
+            android:paddingTop="8dp"/>
+
+        <TextView
+            android:id="@+id/char_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Name of location"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/first_seen_in"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12sp"
+            android:paddingTop="8dp"/>
+
+        <TextView
+            android:id="@+id/char_first_seen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Location name"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+</LinearLayout>
