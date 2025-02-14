@@ -1,8 +1,10 @@
 package com.example.rickandmorty.retrofit
 
-import retrofit2.http.POST
+import com.example.rickandmorty.retrofit_model.CharacterModel
+import retrofit2.Call
+import retrofit2.http.GET
 
 interface ApiService {
-    @POST
-    fun getAllCharacters()
+    @GET("character")
+    fun getAllCharacters(): Call<CharacterModel>
 }
