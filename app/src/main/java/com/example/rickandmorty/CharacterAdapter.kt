@@ -3,12 +3,15 @@ package com.example.rickandmorty
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.rickandmorty.databinding.CharacterFrameBinding
 import com.example.rickandmorty.retrofit_model.Results
 
-class CharacterAdapter(private val characters: List<Results>): RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
+class CharacterAdapter(private var characters: List<Results>): ListAdapter<Results,CharacterAdapter.CharacterViewHolder>(
+    DiffCallback()
+) {
     inner class CharacterViewHolder(val binding: CharacterFrameBinding): ViewHolder(binding.root) {
         fun bind(results: Results){
             binding.charName.text = results.name /// имя
@@ -29,10 +32,11 @@ class CharacterAdapter(private val characters: List<Results>): RecyclerView.Adap
     }
 
     override fun onBindViewHolder(holder: CharacterAdapter.CharacterViewHolder, position: Int) {
-        holder.bind(characters[position])
+        holder.bind(getItem(position))
     }
 
-    override fun getItemCount(): Int {
-        return characters.size
+    class DiffCallback : DiffUtil.ItemCallback<Results>() {
+        override fun areItemsTheSame(oldItem: Results, newItem: Results) = oldItem.id == newItem.id
+        override fun areContentsTheSame(oldItem: Results, newItem: Results) = oldItem == newItem
     }
 }

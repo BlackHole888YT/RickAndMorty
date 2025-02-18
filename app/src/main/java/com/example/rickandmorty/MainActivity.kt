@@ -5,18 +5,20 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rickandmorty.databinding.ActivityMainBinding
 import com.example.rickandmorty.retrofit.RetrofitInstance
 import com.example.rickandmorty.retrofit_model.CharacterModel
-import com.example.rickandmorty.retrofit_model.Results
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
-    private var charList: List<Results> = listOf()  // Изначально пустой список
+    private val viewModel: CharacterViewModel by lazy {
+        ViewModelProvider(this)[CharacterViewModel::class.java]
+    }
     private lateinit var charAdapter: CharacterAdapter
     private val api = RetrofitInstance.api
     private lateinit var binding: ActivityMainBinding
@@ -28,6 +30,10 @@ class MainActivity : AppCompatActivity() {
 
         initRv()
 
+        viewModel.model.observe(this@MainActivity) { modelGet ->
+            charAdapter.submitList(modelGet.results)
+        }
+
         api.getAllCharacters().enqueue(object : Callback<CharacterModel> {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(
@@ -36,9 +42,7 @@ class MainActivity : AppCompatActivity() {
             ) {
                 if (response.isSuccessful && response.body() != null) {
                     response.body()?.let {
-                        charAdapter.notifyDataSetChanged()
-                        Log.e("bh", "onResponse: $it")
-                        charList = it.results
+                        viewModel.getData(it)
                     }
                 } else {
                     Toast.makeText(this@MainActivity, "Unknown Error", Toast.LENGTH_SHORT).show()
@@ -53,8 +57,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initRv() {
-        charAdapter = CharacterAdapter(charList)
+        charAdapter = CharacterAdapter(emptyList())
         binding.rvCharacter.layoutManager = LinearLayoutManager(this)
         binding.rvCharacter.adapter = charAdapter
     }
+
 }
