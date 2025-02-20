@@ -19,7 +19,6 @@ class CharacterAdapter(private var characters: List<Results>): ListAdapter<Resul
             binding.charStatus.text = results.status /// жив или мёртв
             binding.charFirstSeen.text = results.origin.name /// место рождения (вроде)
             binding.charLocation.text = results.location.name /// последнеее местонахождение
-            Log.e("bh", "bind: 1", )
         }
     }
 

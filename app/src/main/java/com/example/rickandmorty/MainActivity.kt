@@ -8,19 +8,21 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rickandmorty.databinding.ActivityMainBinding
-import com.example.rickandmorty.retrofit.RetrofitInstance
+import com.example.rickandmorty.di.AppModule
 import com.example.rickandmorty.retrofit_model.CharacterModel
+import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private val viewModel: CharacterViewModel by lazy {
         ViewModelProvider(this)[CharacterViewModel::class.java]
     }
     private lateinit var charAdapter: CharacterAdapter
-    private val api = RetrofitInstance.api
+    private val api = AppModule.provideApiService(AppModule.provideRetrofit())
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

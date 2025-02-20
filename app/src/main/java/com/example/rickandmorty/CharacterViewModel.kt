@@ -4,8 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.rickandmorty.retrofit_model.CharacterModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class CharacterViewModel: ViewModel() {
+@HiltViewModel
+class CharacterViewModel @Inject constructor(): ViewModel() {
     private var characterData = MutableLiveData<CharacterModel>()
     val model: LiveData<CharacterModel> = characterData
 

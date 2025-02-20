@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -34,6 +36,7 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures.viewBinding = true
+
 }
 
 dependencies {
@@ -41,6 +44,9 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     //Gson converter
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    //dagger hilt
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -50,4 +56,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+}
+
+kapt {
+    correctErrorTypes = true
 }
