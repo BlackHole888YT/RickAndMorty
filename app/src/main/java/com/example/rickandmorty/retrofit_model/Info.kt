@@ -10,8 +10,8 @@ data class Info(
     val pages: Int = 0,
 
     @SerializedName("next")
-    val next: String = "???",
+    val next: String? = null,
 
     @SerializedName("prev")
-    val prev: Boolean? = null
+    val prev: String? = null
 )

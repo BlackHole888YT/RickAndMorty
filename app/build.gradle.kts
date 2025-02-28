@@ -40,6 +40,13 @@ android {
 }
 
 dependencies {
+    // ViewModel + LiveData
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    //paging 3
+    val paging_version = "3.3.2"
+    implementation("androidx.paging:paging-runtime:$paging_version")
+
     //Retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     //Gson converter

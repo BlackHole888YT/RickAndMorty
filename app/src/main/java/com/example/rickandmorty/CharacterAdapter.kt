@@ -1,17 +1,14 @@
 package com.example.rickandmorty
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.rickandmorty.databinding.CharacterFrameBinding
 import com.example.rickandmorty.retrofit_model.Results
 
-class CharacterAdapter(private var characters: List<Results>): ListAdapter<Results,CharacterAdapter.CharacterViewHolder>(
-    DiffCallback()
-) {
+class CharacterAdapter: PagingDataAdapter<Results,CharacterAdapter.CharacterViewHolder>(DiffCallback()) {
     inner class CharacterViewHolder(val binding: CharacterFrameBinding): ViewHolder(binding.root) {
         fun bind(results: Results){
             binding.charName.text = results.name /// имя
@@ -19,6 +16,7 @@ class CharacterAdapter(private var characters: List<Results>): ListAdapter<Resul
             binding.charStatus.text = results.status /// жив или мёртв
             binding.charFirstSeen.text = results.origin.name /// место рождения (вроде)
             binding.charLocation.text = results.location.name /// последнеее местонахождение
+
         }
     }
 
@@ -31,7 +29,7 @@ class CharacterAdapter(private var characters: List<Results>): ListAdapter<Resul
     }
 
     override fun onBindViewHolder(holder: CharacterAdapter.CharacterViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        getItem(position)?.let { holder.bind(it) }
     }
 
     class DiffCallback : DiffUtil.ItemCallback<Results>() {
