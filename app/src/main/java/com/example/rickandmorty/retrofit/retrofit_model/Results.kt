@@ -1,4 +1,4 @@
-package com.example.rickandmorty.retrofit_model
+package com.example.rickandmorty.retrofit.retrofit_model
 
 import com.google.gson.annotations.SerializedName
 

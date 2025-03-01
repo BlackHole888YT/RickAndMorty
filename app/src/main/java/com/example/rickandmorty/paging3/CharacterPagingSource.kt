@@ -3,7 +3,7 @@ package com.example.rickandmorty.paging3
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.rickandmorty.retrofit.ApiService
-import com.example.rickandmorty.retrofit_model.Results
+import com.example.rickandmorty.retrofit.retrofit_model.Results
 
 const val START_INDEX = 1
 

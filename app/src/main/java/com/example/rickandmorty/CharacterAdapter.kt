@@ -6,7 +6,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.rickandmorty.databinding.CharacterFrameBinding
-import com.example.rickandmorty.retrofit_model.Results
+import com.example.rickandmorty.retrofit.retrofit_model.Results
 
 class CharacterAdapter: PagingDataAdapter<Results,CharacterAdapter.CharacterViewHolder>(DiffCallback()) {
     inner class CharacterViewHolder(val binding: CharacterFrameBinding): ViewHolder(binding.root) {

@@ -1,8 +1,6 @@
 package com.example.rickandmorty.retrofit
 
-import androidx.room.Query
-import com.example.rickandmorty.retrofit_model.CharacterModel
-import retrofit2.Call
+import com.example.rickandmorty.retrofit.retrofit_model.CharacterModel
 import retrofit2.http.GET
 
 interface ApiService {
