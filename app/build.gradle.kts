@@ -40,6 +40,8 @@ android {
 }
 
 dependencies {
+    implementation ("androidx.fragment:fragment-ktx:1.5.7")
+
     // ViewModel + LiveData
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")

@@ -12,15 +12,16 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class CharacterFragment : BaseFragment<FragmentCharacterBinding>() {
+class CharacterFragment : BaseFragment<FragmentCharacterBinding, CharacterViewModel>() {
 
-    private val viewModel: CharacterViewModel by lazy {
-        ViewModelProvider(this)[CharacterViewModel::class.java]
-    }
     private lateinit var charAdapter: CharacterAdapter
 
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentCharacterBinding {
         return FragmentCharacterBinding.inflate(inflater, container, false)
+    }
+
+    override fun getViewModelClass(): Class<CharacterViewModel> {
+        return CharacterViewModel::class.java
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
